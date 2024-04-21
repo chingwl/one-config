@@ -85,11 +85,11 @@ config_ssh() {
 
     SSHD_CONFIG="/etc/ssh/sshd_config"
 
-    sed -i 's/^#?\s*Port .*/Port $SSH_PORT/' $SSHD_CONFIG
-    sed -i 's/^#?\s*PermitRootLogin .*/PermitRootLogin no/' $SSHD_CONFIG
-    sed -i 's/^#?\s*PasswordAuthentication .*/PasswordAuthentication no/' $SSHD_CONFIG
-    sed -i 's/^#?\s*ClientAliveInterval .*/ClientAliveInterval 60/' $SSHD_CONFIG
-    sed -i 's/^#?\s*ClientAliveCountMax .*/ClientAliveCountMax 60/' $SSHD_CONFIG
+    sed -i -E "s/^#?\s*Port .*/Port $SSH_PORT/" $SSHD_CONFIG
+    sed -i -E 's/^#?\s*PermitRootLogin .*/PermitRootLogin no/' $SSHD_CONFIG
+    sed -i -E 's/^#?\s*PasswordAuthentication .*/PasswordAuthentication no/' $SSHD_CONFIG
+    sed -i -E 's/^#?\s*ClientAliveInterval .*/ClientAliveInterval 60/' $SSHD_CONFIG
+    sed -i -E 's/^#?\s*ClientAliveCountMax .*/ClientAliveCountMax 60/' $SSHD_CONFIG
 
     echo "开始重启SSH服务..."
     /etc/init.d/ssh restart
